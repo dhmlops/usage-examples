@@ -64,4 +64,26 @@ Examples: https://allegro.ai/clearml/docs/rst/examples/explicit_reporting/index.
 ## Train and log experiment on server
 The most typical way for us to train on the server is to either just SSH into the server and run our codes, or convert our codes into Docker and then submit the whole image as a Kubernetes job. The former is obviously not the way out simply because there is no telling who will use which GPU. The latter sounds better but still require some work. This section tries to get around the above issues.
 
-To make this happen, 
+To make this happen, the idea is to tell ClearML that you are creating a experiment run and then ClearML will terminate the code from running locally but bring it up to the server. For ClearML to do this, it needs to be able to pull the entire repo of codes. So...this means the codes must pushed inside a git repo before this works, and that's pretty much everything...i hope.
+
+#### Inject clearml code into your codes
+```python
+#Put this at the beginning of your codeset
+from clearml import Task
+task = Task.init(project_name='My Project Name - Event Extraction', task_name='My Task Name - Dygie')
+
+task.set_base_docker("nvidia/cuda:10.1-runtime-ubuntu18.04 -e GIT_SSL_NO_VERIFY=true")
+task.execute_remotely(queue_name="gpu", exit_process=True)
+```
+Now the first two lines are the standard lines that you need to put for ClearML<br>
+The third line allows you to indicate which docker base to use, and the environment variables you want to set<br>
+The last line simply tell ClearML to terminate the local run and assign this task to the GPU queue. Quite the ingenuity if you ask me<br>
+You should see an output similar to following
+```bash
+(venv) jax@Kahs-MacBook-Pro pytorchmnist % python3 pytorch_mnist_task.py
+ClearML Task: created new task id=43f65db3b3e54801b33a3eaa2546427a
+ClearML results page: http://192.168.50.33:80/projects/2198e4eb6f664fb29e35e2bb249796ed/experiments/43f65db3b3e54801b33a3eaa2546427a/output/log
+2021-03-02 00:31:14,777 - clearml - WARNING - Switching to remote execution, output log page http://192.168.50.33:80/projects/2198e4eb6f664fb29e35e2bb249796ed/experiments/43f65db3b3e54801b33a3eaa2546427a/output/log
+2021-03-02 00:31:14,777 - clearml - WARNING - Terminating local execution process
+```
+
