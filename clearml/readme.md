@@ -33,6 +33,7 @@ Getting your credentials: Screenshot of the screen at profile page
 <img src="https://github.com/dhmlops/usage-examples/raw/main/clearml/clearml_credentials.png" width="480">
 
 #### Inject clearml code into your codes
+First of all, to fulfil our goal of reproducibility, your codes should be checked in to Gitlab. ClearML is able to pick it up and reference for you.<br>
 If you are following one of the following frameworks, and you already have reporting codes (E.g. tensorboard), you may use a two liner to perform a 'automagikal logging'. (Note: You can still choose to manual log if there's issues or there's non standard stuff to log)
 -  PyTorch(incl' ignite/lightning), Tensorflow, Keras, AutoKeras, XGBoost and Scikit-Learn
 ```python
