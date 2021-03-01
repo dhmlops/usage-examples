@@ -3,11 +3,11 @@
 ## Overview
 ClearML allows us to use it in different ways, as limiting our flexibility as little as possible. This article describes the most common way we would be using it.
 1. Train on local laptop, log experiments on server
-2. Train on server, log experiments on server
+2. Train and log experiment on server
 
 
 ## Train on local laptop, log experiments on server
-In this method, the developer codes and runs the code on his laptop as per normal. If the code is a training code, then the training will happen on the laptop. When the code is running, it will send updates to the ClearML Server and the server will log the progress in near realtime. A few things needs to be done for this to happen.
+In this method, the developer codes and runs the code on his laptop as per normal. If the code is a training code, then the training will happen on the laptop. When the code is running, it will send updates to the ClearML Server and the server will log the progress in near realtime. A few things needs to be done for this to happen. Note, if you are submitting your codes to Kubernetes to train, its fine too but you have to consider the instructions below when building your docker image. Otherwise, consider the next [section](#Train and log experiment on server).
 
 #### Install and configure clearml on laptop
 Run the instaler
@@ -57,3 +57,8 @@ If you are not following one of the above frameworks, and your code is in Python
 Details of the manual approach can be found here. <br>
 Tutorial:https://allegro.ai/clearml/docs/docs/tutorials/tutorial_explicit_reporting.html <br>
 Examples: https://allegro.ai/clearml/docs/rst/examples/explicit_reporting/index.html
+
+## Train and log experiment on server
+The most typical way for us to train on the server is to either just SSH into the server and run our codes, or convert our codes into Docker and then submit the whole image as a Kubernetes job. The former is obviously not the way out simply because there is no telling who will use which GPU. The latter sounds better but still require some work. This section tries to get around the above issues.
+
+To make this happen, 
