@@ -14,7 +14,7 @@ Run the instaler
 ```bash
 pip install clearml
 ```
-copy [clearml.conf](https://github.com/dhmlops/usage-examples/blob/main/clearml.conf) to ~/clearml.conf<br>
+copy [clearml.conf](clearml.conf) to ~/clearml.conf<br>
 Change apt_server, web_server, files_server to the right IP/Name/Ports.<br> 
 Credentials and secret_key can be retrieved by accessing the ClearML UI and then 'profile'.
 
@@ -30,7 +30,7 @@ api {
 }
 ```
 Getting your credentials: Screenshot of the screen at profile page
-![Getting your credentials: Screenshot of the screen at profile page](assets/clearml_credentials.png?raw=true "Getting your credentials: Screenshot of the screen at profile page")
+![Getting your credentials: Screenshot of the screen at profile page](clearml_credentials.png?raw=true "Getting your credentials: Screenshot of the screen at profile page")
 
 #### Inject clearml code into your codes
 If you are following one of the following frameworks, and you already have reporting codes (E.g. tensorboard), you may use a two liner to perform a 'automagikal logging'. (Note: You can still choose to manual log if there's issues or there's non standard stuff to log)
