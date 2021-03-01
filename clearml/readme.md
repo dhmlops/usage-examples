@@ -29,7 +29,7 @@ api {
     credentials {"access_key": "0LKT6VX2TFXQF8EAXGX5", "secret_key": "NXDw)b6Y2^pjmh3o2qQAtL0cy3KL(O+%YdGWPk@Vhsw_hDcb7!"}
 }
 ```
-Getting your credentials: Screenshot of the screen at profile page
+Getting your credentials: Screenshot of the screen at profile page<br>
 <img src="https://github.com/dhmlops/usage-examples/raw/main/clearml/clearml_credentials.png" width="480">
 
 #### Inject clearml code into your codes
@@ -65,6 +65,28 @@ Examples: https://allegro.ai/clearml/docs/rst/examples/explicit_reporting/index.
 The most typical way for us to train on the server is to either just SSH into the server and run our codes, or convert our codes into Docker and then submit the whole image as a Kubernetes job. The former is obviously not the way out simply because there is no telling who will use which GPU. The latter sounds better but still require some work. This section shows you how to simply from your code, add one line, run the code and sit back and watch the rest happening.
 
 To make this happen, the idea is to tell ClearML that you are creating a experiment run and then ClearML will terminate the code from running locally but bring it up to the server. For ClearML to do this, it needs to be able to pull the entire repo of codes. So...this means the codes must pushed inside a git repo before this works, and that's pretty much everything...i hope.
+
+#### Install and configure clearml on laptop
+Run the instaler
+```bash
+pip install clearml
+```
+copy [clearml.conf](clearml.conf) to ~/clearml.conf<br>
+Change apt_server, web_server, files_server to the right IP/Name/Ports.<br> 
+Credentials and secret_key can be retrieved by accessing the ClearML UI and then 'profile'.
+
+```
+api {
+    # Notice: 'host' is the api server (default port 8008), not the web server.
+    api_server: http://192.168.50.31:8008
+    web_server: http://192.168.50.33:80
+    files_server: http://192.168.50.32:8081
+    # Credentials are generated using the webapp, http://192.168.50.88:8080/profile
+    # Override with os environment: CLEARML_API_ACCESS_KEY / CLEARML_API_SECRET_KEY
+    credentials {"access_key": "0LKT6VX2TFXQF8EAXGX5", "secret_key": "NXDw)b6Y2^pjmh3o2qQAtL0cy3KL(O+%YdGWPk@Vhsw_hDcb7!"}
+}
+```
+Getting your credentials: Screenshot of the screen at profile page<br>
 
 #### Inject clearml code into your codes
 ```python
