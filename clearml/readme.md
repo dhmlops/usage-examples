@@ -62,7 +62,7 @@ Tutorial:https://allegro.ai/clearml/docs/docs/tutorials/tutorial_explicit_report
 Examples: https://allegro.ai/clearml/docs/rst/examples/explicit_reporting/index.html
 
 ## Train and log experiment on server
-The most typical way for us to train on the server is to either just SSH into the server and run our codes, or convert our codes into Docker and then submit the whole image as a Kubernetes job. The former is obviously not the way out simply because there is no telling who will use which GPU. The latter sounds better but still require some work. This section tries to get around the above issues.
+The most typical way for us to train on the server is to either just SSH into the server and run our codes, or convert our codes into Docker and then submit the whole image as a Kubernetes job. The former is obviously not the way out simply because there is no telling who will use which GPU. The latter sounds better but still require some work. This section shows you how to simply from your code, add one line, run the code and sit back and watch the rest happening.
 
 To make this happen, the idea is to tell ClearML that you are creating a experiment run and then ClearML will terminate the code from running locally but bring it up to the server. For ClearML to do this, it needs to be able to pull the entire repo of codes. So...this means the codes must pushed inside a git repo before this works, and that's pretty much everything...i hope.
 
