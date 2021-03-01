@@ -52,6 +52,8 @@ writer.add_scalar('Train/Loss', loss.data.item(), niter)
 .
 .
 ```
+A set of working codes is already made available at [pytorch_mnist.py](pytorch_mnist.py).
+
 
 If you are not following one of the above frameworks, and your code is in Python, you can use the manual approach.
 Details of the manual approach can be found here. <br>
