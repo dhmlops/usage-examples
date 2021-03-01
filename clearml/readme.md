@@ -1,4 +1,4 @@
-# Using ClearML Server
+# How to do Experiment Logging on ClearML
 
 ## Overview
 ClearML allows us to use it in different ways, as limiting our flexibility as little as possible. This article describes the most common way we would be using it.
