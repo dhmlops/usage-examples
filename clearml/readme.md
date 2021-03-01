@@ -18,7 +18,7 @@ copy [clearml.conf](https://github.com/dhmlops/usage-examples/blob/main/clearml.
 Change apt_server, web_server, files_server to the right IP/Name/Ports.<br> 
 Credentials and secret_key can be retrieved by accessing the ClearML UI and then 'profile'.
 
-```json
+```
 api {
     # Notice: 'host' is the api server (default port 8008), not the web server.
     api_server: http://192.168.50.31:8008
