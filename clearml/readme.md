@@ -14,16 +14,27 @@ In this method, the developer codes and runs the code on his laptop as per norma
 pip install clearml
 ```
 #### Inject clearml code into your codes
-If you are following one of the following frameworks, you may use a two liner to perform a 'automagikal logging'. (Note: You can still choose to manual log if there's issues or there's non standard stuff to log)
+If you are following one of the following frameworks, and you already have reporting codes (E.g. tensorboard), you may use a two liner to perform a 'automagikal logging'. (Note: You can still choose to manual log if there's issues or there's non standard stuff to log)
 -  PyTorch(incl' ignite/lightning), Tensorflow, Keras, AutoKeras, XGBoost and Scikit-Learn
 ```python
 #Put this at the beginning of your codeset
 from clearml import Task
 task = Task.init(project_name='My Project Name - Event Extraction', task_name='My Task Name - Dygie')
 ```
-
-If you are not following one of the above frameworks, and your code is in Python, you can use the manual approach. 
-Details of the manual approach can be found here. https://allegro.ai/clearml/docs/docs/tutorials/tutorial_explicit_reporting.html
 ```python
-
+# A typical pytorch with tensorboard reporting would have something as follows, these will be captured by ClearML automatically
+from torch.utils.tensorboard import SummaryWriter
+.
+.
+writer = SummaryWriter('runs')
+.
+.
+writer.add_scalar('Train/Loss', loss.data.item(), niter)
+.
+.
 ```
+
+If you are not following one of the above frameworks, and your code is in Python, you can use the manual approach.
+Details of the manual approach can be found here. <br>
+Tutorial:https://allegro.ai/clearml/docs/docs/tutorials/tutorial_explicit_reporting.html <br>
+Examples: https://allegro.ai/clearml/docs/rst/examples/explicit_reporting/index.html
