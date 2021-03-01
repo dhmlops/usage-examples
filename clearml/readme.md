@@ -29,6 +29,9 @@ api {
     credentials {"access_key": "0LKT6VX2TFXQF8EAXGX5", "secret_key": "NXDw)b6Y2^pjmh3o2qQAtL0cy3KL(O+%YdGWPk@Vhsw_hDcb7!"}
 }
 ```
+Getting your credentials: Screenshot of the screen at profile page
+![Getting your credentials: Screenshot of the screen at profile page](assets/clearml_credentials.png?raw=true "Getting your credentials: Screenshot of the screen at profile page")
+
 #### Inject clearml code into your codes
 If you are following one of the following frameworks, and you already have reporting codes (E.g. tensorboard), you may use a two liner to perform a 'automagikal logging'. (Note: You can still choose to manual log if there's issues or there's non standard stuff to log)
 -  PyTorch(incl' ignite/lightning), Tensorflow, Keras, AutoKeras, XGBoost and Scikit-Learn
