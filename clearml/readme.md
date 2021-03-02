@@ -114,7 +114,7 @@ The sample code used here is available at [pytorch_mnist_task.py](pytorch_mnist_
 In this scenario, we already developed a training code and we are just running some hyperparameter search. The most typical way is a Grid Search, more complex methods are Bayesian Optimisation. Typically, someone would write a gridsearch and then start running it by submitting it as a job to Kubernetes. This section tries to cover as many scenarios as possible.
 
 #### Standard Gridsearch
-The standard gridsearch is where you simply perform what is described in [Train and log experiment on server](#train-and-log-experiment-on-server), but in this case, you need some manual explicit reporting to report the results of the gridsearch. Quite frankly, given ClearML, i would like you to try the following instead....so yeah, i am underplaying this section and emphasizing on the next.
+The standard gridsearch is where you simply perform what is described in [Train and log experiment on server](#train-and-log-experiment-on-server), but in this case, you need some manual explicit reporting to report the results of the gridsearch. Quite frankly, given ClearML, i would like you to try the following subsection instead....so yeah, i am underplaying this section and emphasizing on the next.
 
 #### Hyperparameter using ClearML
 1. Choose a search strategry
