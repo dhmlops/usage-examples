@@ -4,6 +4,7 @@
 ClearML allows us to use it in different ways, as limiting our flexibility as little as possible. This article describes the most common way we would be using it.
 1. Train on local laptop, log experiments on server
 2. Train and log experiment on server
+3. Hyperparameter Tuning: Train and log experiment on server
 
 
 ## Train on local laptop, log experiments on server
@@ -108,4 +109,20 @@ ClearML results page: http://192.168.50.33:80/projects/2198e4eb6f664fb29e35e2bb2
 2021-03-02 00:31:14,777 - clearml - WARNING - Switching to remote execution, output log page http://192.168.50.33:80/projects/2198e4eb6f664fb29e35e2bb249796ed/experiments/43f65db3b3e54801b33a3eaa2546427a/output/log
 2021-03-02 00:31:14,777 - clearml - WARNING - Terminating local execution process
 ```
+
+## Hyperparameter Tuning: Train and log experiment on server
+In this scenario, we already developed a training code and we are just running some hyperparameter search. The most typical way is a Grid Search, more complex methods are Bayesian Optimisation. Typically, someone would write a gridsearch and then start running it by submitting it as a job to Kubernetes. This section tries to cover as many scenarios as possible.
+
+#### Standard Gridsearch
+The standard gridsearch is where you simply perform what is described in [Train and log experiment on server](Train and log experiment on server), but in this case, you need some manual explicit reporting to report the results of the gridsearch. Quite frankly, given ClearML, i would like you to try the following instead....so yeah, i am underplaying this section and emphasizing on the next.
+
+#### Hyperparameter using ClearML
+1. Choose a search strategry
+2. 
+
+ref: https://allegro.ai/clearml/docs/docs/examples/optimization/hyper-parameter-optimization/examples_hyperparam_opt.html
+
+
+
+
 
