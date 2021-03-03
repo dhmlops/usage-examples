@@ -1,14 +1,14 @@
 # How to do Experiment Logging on ClearML
 
 ## Overview
-ClearML allows us to use it in different ways, as limiting our flexibility as little as possible. This article describes the most common way we would be using it.
+ClearML allows us to use it in different ways, limiting our flexibility as little as possible. This article describes the most common way we would be using it.
 1. Train on local laptop, log experiments on server
 2. Train and log experiment on server
 3. Hyperparameter Tuning: Train and log experiment on server
 
 
 ## Train on local laptop, log experiments on server
-In this method, the developer codes and runs the code on his laptop as per normal. If the code is a training code, then the training will happen on the laptop. When the code is running, it will send updates to the ClearML Server and the server will log the progress in near realtime. A few things needs to be done for this to happen. Note, if you are submitting your codes to Kubernetes to train, its fine too but you have to consider the instructions below when building your docker image. Otherwise, consider the next [section](#Train and log experiment on server).
+In this method, the developer codes and runs the code on his laptop as per normal. If the code is a training code, then the training will happen on the laptop. When the code is running, it will send updates to the ClearML Server and the server will log the progress in near realtime. A few things needs to be done for this to happen. Note, if you are submitting your codes to Kubernetes to train, its fine too but you have to consider the instructions below when building your docker image. Otherwise, consider the next [section](#train-and-log-experiment-on-server).
 
 #### Install and configure clearml on laptop
 Run the instaler
