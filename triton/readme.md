@@ -20,7 +20,7 @@ pip3 install nvidia-pyindex
 pip3 install tritonclient[all]
 
 # install client dependencies
-pip3 install Pillow==2.2.2
+pip3 install Pillow
 ```
 
 
