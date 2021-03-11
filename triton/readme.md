@@ -13,7 +13,10 @@ We will be using a tensorflow example to walk through. The example codes are ava
 ![alt text](https://github.com/dhmlops/usage-examples/blob/main/triton/images/overview)
 
 
-### Install dependencies
+### Install dependencies [Optional]
+Install these if you are using Triton Client library to do REST/GRPC calls to Triton Server.
+Alternatively, you can construct your own REST call e.g. using Python requests to do RESTFUL call to Triton Server.
+
 ```bash
 # install triton client libraries
 pip3 install nvidia-pyindex
@@ -33,6 +36,7 @@ pip3 install Pillow
 
 ### Create config.pbtxt
 This is a sample of the config.pbtxt based on the tensorflow example.
+
 ```
 name: "mnist_tf_savedmodel"
 platform: "tensorflow_savedmodel"
@@ -57,10 +61,20 @@ output [
 - “max_batch_size”: TBC
 - “input”: The MNIST model takes in an image of (28, 28, 1) -> H x W x Channel.
 - “output: The MNIST model output probability of 10 classes.
-
 TODO: add in the table for different platform values.
 
+You can get the model info through these methods (Refer to this notebook https://github.com/dhmlops/usage-examples/blob/main/triton/model%20training/MNIST_TF_1.ipynb for working codes):
+```python
+# for tensorflow model
+model.input
+<KerasTensor: shape=(None, 28, 28, 1) dtype=float32 (created by layer 'flatten_2_input'
+.....
 
+model.output
+
+.....
+<KerasTensor: shape=(None, 10) dtype=float32 (created by layer 'dense_5')>
+```
 
 ### Deploy to Triton Server
 Deploy the trained model and its config file based on the folder structure shown in the diagram below.
@@ -84,23 +98,17 @@ I0302 03:06:02.705883 1 server.cc:533]
 
 
 ### Create Client
-After the model is deployed successfully, we can create client to do model inference. The client can be coded in any programming languages. The following subsection describes how the client using triton client library to call Triton Server for inference. 
-
-#### Determine Client Type
-- Triton client library is used to make HTTP / GRPC call to Triton Server. 
-- The library is available in python / C++, which we already installed under "Install Dependencies" section.
-- Thus, to do inference to Triton Server, you can import in the library and make a call to Triton Server. 
-- Alternatively for non python / c++ clients, proposed a generic wrapper to be deployed with Triton Server. This wrapper will exposed REST API for client to call, parse input and return response from Triton Server back to client REST request. Pleasee refer to the diagram below. 
-
-![alt text](https://github.com/dhmlops/usage-examples/blob/main/triton/images/options_for_inference.png)
-
-#### Building the client.
+After the model is deployed successfully, we can create client to do model inference. 
 - Client code in general contains:
   - Pre-processing of data to model input shape and data type.
-  - Obtain triton client using triton client library. 
-  - Call Triton Server. 
-  - Post-processing of Triton Server’s response.
+  - Call Triton Server (with REST / GRPC). 
+  - Post-processing of Triton Server’s response
+  - 
+Here's two options for the client REST/GRPC:
+1. Using Triton Client Library
+2. Construct your own REST e.g. using Python requests
 
+#### Using Triton Client Library
 ``` python
 # pre-processing of data to get required shape and data type
 ... codes...
@@ -134,7 +142,9 @@ Using GRPC ...
 Using HTTPS ... 
 7
 ```
-
+#### Construct own REST
+The REST APIs are available here. https://github.com/kubeflow/kfserving/blob/master/docs/predict-api/v2/required_api.md
+Refer to this sample codes. https://github.com/dhmlops/usage-examples/tree/main/triton/client_REST
 
 ## References
 1. https://github.com/triton-inference-server/server
