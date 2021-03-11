@@ -67,13 +67,13 @@ You can get the model info through these methods (Refer to this notebook https:/
 ```python
 # for tensorflow model
 model.input
-<KerasTensor: shape=(None, 28, 28, 1) dtype=float32 (created by layer 'flatten_2_input'
+<KerasTensor: shape=(None, 28, 28, 1) dtype=float32 (created by layer 'flatten_1_input'
 .....
 
 model.output
 
 .....
-<KerasTensor: shape=(None, 10) dtype=float32 (created by layer 'dense_5')>
+<KerasTensor: shape=(None, 10) dtype=float32 (created by layer 'dense_3')>
 ```
 
 ### Deploy to Triton Server
