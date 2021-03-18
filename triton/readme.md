@@ -34,6 +34,27 @@ pip3 install Pillow
 - Triton also supports other ML framework and model format. 
 - TODO: add the table.
 
+### Saving your model
+- For Tensorflow model, you may save as ".savedmodel" format. 
+```python
+model.save("model".savedmodel)
+```
+- For pytorch model, you have to serialise your model using Torchscript and save it as ".pt" format. There are two ways to do so. Refer to this for some explaination on Script vs Tracing. https://stackoverflow.com/questions/53900396/what-are-torch-scripts-in-pytorch
+```python
+# ======= Using Script way =======
+# TODO: Add sample codes
+
+
+# ======= Using Tracing =======
+# load a sample image
+example_img, example_label = next(iter(train_loader))
+# run the tracing
+traced_script_model = torch.jit.trace(model, example_image)
+
+# save the converted model
+traced_script_model.save("model.pt")
+```
+
 ### Create config.pbtxt
 This is a sample of the config.pbtxt based on the tensorflow example.
 
