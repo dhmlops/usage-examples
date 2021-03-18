@@ -39,7 +39,7 @@ pip3 install Pillow
 ```python
 model.save("model".savedmodel)
 ```
-- For pytorch model, you have to serialise your model using Torchscript and save it as ".pt" format. There are two ways to do so. Refer to this for some explaination on Script vs Tracing. https://stackoverflow.com/questions/53900396/what-are-torch-scripts-in-pytorch
+- For pytorch model, you have to serialise your model using Pytorch just in time complier (JIT) and save it as ".pt" format. There are two ways to do so. Refer to this for some explaination on Script vs Tracing. https://stackoverflow.com/questions/53900396/what-are-torch-scripts-in-pytorch
 ```python
 # ======= Using Script way =======
 # TODO: Add sample codes
