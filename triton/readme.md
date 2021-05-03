@@ -51,6 +51,9 @@ example_img, example_label = next(iter(train_loader))
 # run the tracing
 traced_script_model = torch.jit.trace(model, example_image)
 
+# see model functions
+print(traced_script_model.code)
+
 # save the converted model
 traced_script_model.save("model.pt")
 ```
