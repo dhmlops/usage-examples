@@ -16,3 +16,17 @@ output [
         dims: [10]
     }
 ]
+
+instance_group [
+    {
+      count: 2
+      kind: KIND_CPU
+    }
+]
+
+dynamic_batching {
+    preferred_batch_size: [ 1, 3 ]
+    max_queue_delay_microseconds: 100
+}
+
+
