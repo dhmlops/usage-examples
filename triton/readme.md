@@ -39,17 +39,17 @@ pip3 install Pillow
 ```python
 model.save("model".savedmodel)
 ```
-- For pytorch model, you have to serialise your model using Pytorch just in time complier (JIT) and save it as ".pt" format. There are two ways to do so. Refer to this for some explaination on Script vs Tracing. https://stackoverflow.com/questions/53900396/what-are-torch-scripts-in-pytorch
+- For pytorch model, you have to serialise your model using Pytorch just in time complier (JIT) and save it as "model.pt" format. Note: The model name must be model.pt. There are two ways to do so. Refer to this for some explaination on Script vs Tracing. https://stackoverflow.com/questions/53900396/what-are-torch-scripts-in-pytorch
 ```python
 # ======= Using Script way =======
 # TODO: Add sample codes
 
 
 # ======= Using Tracing =======
-# load a sample image
+# load a batch of sample images
 example_img, example_label = next(iter(train_loader))
 # run the tracing
-traced_script_model = torch.jit.trace(model, example_image)
+traced_script_model = torch.jit.trace(model, example_img)
 
 # see model functions
 print(traced_script_model.code)
@@ -82,7 +82,7 @@ output [
 ]
 ```
 - “name” must be the same as its parent folder
-- “max_batch_size”: TBC
+- “max_batch_size”: max batch that triton can merge requests as 1 infer call for efficiency. 
 - “input”: The MNIST model takes in an image of (28, 28, 1) -> H x W x Channel.
 - “output: The MNIST model output probability of 10 classes.
 TODO: add in the table for different platform values.
